@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Learning Javascript</title>
+</style>
+<style>
+body{
+  font-family: Verdana, Geneva, sans-serif;
+}
+
+#box {
+
+  width: 255px;
+  height: 255px;
+  display: none;
+}
+
+.bold {
+  font-weight: bold;
+}
+
+</style>
+
+</head>
+
+<body>
+  <h1>Destroy Trump As Fast As You Can!</h1>
+  <p>
+    <em>To destroy him, click on him as fast as you can! Try to beat your time!</em>
+  </p>
+  <p class="bold">Your Time: <span id="time"><em>0</em></span>s</p>
+<div id="box" class="custom">
+
+</div>
+
+<script type="text/javascript">
+
+// function getRandomColor() {
+//       var letters = '0123456789ABCDEF'.split('');
+//       var color = '#';
+//       for (var i = 0; i < 6; i++ ) {
+//         color += letters[Math.floor(Math.random() * 16)];
+//     }
+//     return color;
+// }
+
+
+
+var clickedTime; var createdTime; var reactionTime;
+var trumpArray = ['images/trump1.jpg', 'images/trump2.jpeg', 'images/trump3.jpg', 'images/trump3.jpg', 'images/trump4.jpg'];
+
+//this will make the box
+function makeBox(){
+
+      createdTime = Date.now();
+      var time = Math.random();
+      var radiusAdjust = Math.random();
+
+      time = time * 5000;
+
+
+
+
+      setTimeout(function(){
+        // create random images
+        function getRandomImage() {
+          var randomImage = Math.random() * 4;
+          randomImage = Math.round(randomImage);
+          var backTrump = trumpArray[randomImage];
+          document.getElementById('box').style.backgroundSize="255px 255px";
+          document.getElementById('box').style.backgroundImage="url('"+ backTrump + "')";
+
+
+          } // end of random image
+          getRandomImage();
+
+        document.getElementById('box').style.display="block";
+
+
+
+        // // sets the shape within the function
+        // if (Math.random()<=0.3){
+        //     box.className = "square";
+        // } else if (Math.random()<=0.6){
+        //     box.className = "circle";
+        // } else {
+        //     box.className = "triangle";
+        // } // end of shape making
+
+        //This function sets the position
+        var randomTime = Math.random();
+        document.getElementById("box").style.marginLeft=(randomTime * 500) + "px";
+        document.getElementById("box").style.marginRight=(randomTime * 4000) + "px";
+        document.getElementById("box").style.marginBottom=(randomTime * 300) + "px";
+        document.getElementById("box").style.marginTop=(randomTime * 200) + "px";
+        createdTime=Date.now();
+      }, time);
+
+} // end of MakeBox
+
+// this will disappear the box when you click on it
+document.getElementById('box').onclick=function(){
+    clickedTime = Date.now();
+
+    reactionTime=[clickedTime-createdTime]/1000;
+
+    document.getElementById("time").innerHTML = reactionTime;
+
+    this.style.display="none";
+    makeBox();
+  }
+ makeBox();
+</script>
+
+</body>
+
+
+</html>
